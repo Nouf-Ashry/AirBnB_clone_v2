@@ -128,7 +128,7 @@ class TestAmenity_save(unittest.TestCase):
         with self.assertRaises(TypeError):
             Amy.save(None)
 
-    def test_save_updates_file(self):
+    def test_saveUpdates_file(self):
         Amy = Amenity()
         Amy.save()
         Amyid = "Amenity." + Amy.id
