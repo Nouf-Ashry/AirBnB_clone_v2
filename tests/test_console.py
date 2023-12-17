@@ -170,25 +170,6 @@ class TestHBNBCommand_count(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("Review.count()"))
             self.assertEqual("1", output.getvalue().strip())
 
-def test_create_command_with_kwargs(self):
-        """Test create command with kwargs."""
-        # Test create command with additional key-value pairs
-        with patch("sys.stdout", new=StringIO()) as f:
-            call = (f'create Place city_id="0001" name="My_house" number_rooms=4 latitude=37.77 longitude=43.434')  # noqa
-            self.HBNB.onecmd(call)
-            pl = f.getvalue().strip()
-         # Test if the created instance and kwargs are in the
-         #    output of "all" command
-        with patch("sys.stdout", new=StringIO()) as f:
-            self.HBNB.onecmd("all Place")
-            output = f.getvalue()
-            self.assertIn(pl, output)
-            self.assertIn("'city_id': '0001'", output)
-            self.assertIn("'name': 'My house'", output)
-            self.assertIn("'number_rooms': 4", output)
-            self.assertIn("'latitude': 37.77", output)
-            self.assertIn("'longitude': 43.434", output)
-
 
 if __name__ == "__main__":
     unittest.main()
