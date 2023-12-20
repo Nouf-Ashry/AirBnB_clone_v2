@@ -34,7 +34,6 @@ class FileStorage:
             return (dic)
         else:
             return self.__objects
-        
 
     def new(self, obj):
         """Set in __objects obj with key <obj_class_name>.id"""
