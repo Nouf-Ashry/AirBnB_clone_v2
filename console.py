@@ -249,20 +249,13 @@ class HBNBCommand(cmd.Cmd):
                 args = args[second_quote + 1:]
 
             args = args.partition(' ')
-
             if not att_name and args[0] != ' ':
                 att_name = args[0]
-
             if args[2] and args[2][0] == '\"':
                 att_val = args[2][1:args[2].find('\"', 1)]
-
-
             if not att_val and args[2]:
                 att_val = args[2].partition(' ')[0]
-
             args = [att_name, att_val]
-
-  
         new_dict = storage.all()[key]
 
         for i, att_name in enumerate(args):
@@ -275,7 +268,6 @@ class HBNBCommand(cmd.Cmd):
                 if not att_val:
                     print("** value missing **")
                     return
-                
                 if att_name in HBNBCommand.types:
                     att_val = HBNBCommand.types[att_name](att_val)
 
@@ -287,6 +279,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
