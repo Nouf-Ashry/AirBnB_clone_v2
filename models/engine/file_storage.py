@@ -21,9 +21,19 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def all(self):
+    def all(self, cls=None):
         """return the dictionary __objects."""
-        return FileStorage.__objects
+        dic = {}
+        if cls:
+            dictionary = self.__objects
+            for key in dictionary:
+                partition = key.replace('.', ' ')
+                partition = shlex.split(partition)
+                if (partition[0] == cls.__name__):
+                    dic[key] = self.__objects[key]
+            return (dic)
+        else:
+            return self.__objects
 
     def new(self, obj):
         """Set in __objects obj with key <obj_class_name>.id"""
@@ -48,4 +58,16 @@ class FileStorage:
                     del u["__class__"]
                     self.new(eval(clname)(**u))
         except FileNotFoundError:
-            return
+            pass
+    def delete(self, obj=None):
+        """ delete obj from __objects if it’s 
+            inside - if obj is equal to None
+        """
+        if obj:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            del self.__objects[key]
+
+    def close(self):
+        """ calls reload()
+        """
+        self.reload()
