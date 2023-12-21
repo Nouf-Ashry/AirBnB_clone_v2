@@ -1,5 +1,5 @@
 #!/usr/bin/pyhthon3
-"""Module for the test of MySQL"""
+"""test  MySQL"""
 import MySQLdb
 import unittest
 from unittest.mock import patch
@@ -41,7 +41,7 @@ class TestMySQL(unittest.TestCase):
         self.bvr.execute("SELECT COUNT(*) FROM states")
         res = self.bvr.fetchone()[0]
         self.assertEqual(res, 1)
-        self.disconnection()
+        self.DisConnection()
 
     def test_createCity(self):
         """Test create of a City"""
@@ -55,7 +55,7 @@ class TestMySQL(unittest.TestCase):
         self.bvr.execute("SELECT COUNT(*) FROM cities")
         res = self.bvr.fetchone()[0]
         self.assertEqual(res, 1)
-        self.disconnection()
+        self.DisConnection()
 
 
 if __name__ == '__main__':

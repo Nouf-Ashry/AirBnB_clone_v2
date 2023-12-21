@@ -8,7 +8,6 @@ from sqlalchemy.orm import relationship
 from models.place import Place
 
 
-
 class City(BaseModel, Base):
     """class city.
 
