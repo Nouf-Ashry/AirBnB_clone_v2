@@ -21,9 +21,9 @@ class TestMySQL(unittest.TestCase):
         storage = DBStorage()
         storage.reload()
         self.bnn = MySQLdb.connect(getenv('HBNB_MYSQL_HOST'),
-                                    getenv('HBNB_MYSQL_USER'),
-                                    getenv('HBNB_MYSQL_PWD'),
-                                    getenv('HBNB_MYSQL_DB'))
+                                   getenv('HBNB_MYSQL_USER'),
+                                   getenv('HBNB_MYSQL_PWD'),
+                                   getenv('HBNB_MYSQL_DB'))
         self.bvr = self.bnn.cursor()
 
     def DisConnection(self):
