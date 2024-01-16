@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""new class for sql """
+"""class for sql """
 from os import getenv
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import (create_engine)
@@ -46,8 +46,8 @@ class DBStorage:
                 key = "{}.{}".format(type(elem).__name__, elem.id)
                 dic[key] = elem
         else:
-            lista = [State, City, User, Place, Review, Amenity]
-            for clase in lista:
+            lister = [State, City, User, Place, Review, Amenity]
+            for clase in lister:
                 query = self.__session.query(clase)
                 for elem in query:
                     key = "{}.{}".format(type(elem).__name__, elem.id)
