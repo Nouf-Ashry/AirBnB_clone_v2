@@ -52,7 +52,7 @@ class FileStorage:
 
     def reload(self):
         """deserialize the JSON file __file_path
-        to __objects. if the file doesn’t exists."""
+        to __objects. if the file doesn't exists."""
         try:
             with open(self.__file_path, 'r', encoding="UTF-8") as f:
                 for key, value in (json.load(f)).items():
@@ -62,7 +62,7 @@ class FileStorage:
             pass
 <<<<<<< HEAD
     def delete(self, obj=None):
-        """ delete obj from __objects if it’s 
+        """ delete obj from __objects if it's 
             inside - if obj is equal to None
 =======
 
