@@ -8,6 +8,7 @@ from models.city import City
 from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
+import shlex
 
 
 class FileStorage:
@@ -37,31 +38,37 @@ class FileStorage:
 
     def new(self, obj):
         """Set in __objects obj with key <obj_class_name>.id"""
-        objcn = obj.__class__.__name__
-        FileStorage.__objects["{}.{}".format(objcn, obj.id)] = obj
+        if obj:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            self.__objects[key] = obj
 
     def save(self):
         """serialize __objects to the JSON file __file_path."""
-        dicter = FileStorage.__objects
-        obdicter = {obj: dicter[obj].to_dict() for obj in dicter.keys()}
-        with open(FileStorage.__file_path, "w") as f:
-            json.dump(obdicter, f)
+        my_dictor = {}
+        for key, value in self.__objects.items():
+            my_dictor[key] = value.to_dict()
+        with open(self.__file_path, 'w', encoding="UTF-8") as f:
+            json.dump(my_dictor, f)
 
     def reload(self):
         """deserialize the JSON file __file_path
         to __objects. if the file doesn’t exists."""
         try:
-            with open(FileStorage.__file_path) as f:
-                obdicter = json.load(f)
-                for u in obdicter.values():
-                    clname = u["__class__"]
-                    del u["__class__"]
-                    self.new(eval(clname)(**u))
+            with open(self.__file_path, 'r', encoding="UTF-8") as f:
+                for key, value in (json.load(f)).items():
+                    value = eval(value["__class__"])(**value)
+                    self.__objects[key] = value
         except FileNotFoundError:
             pass
+<<<<<<< HEAD
     def delete(self, obj=None):
         """ delete obj from __objects if it’s 
             inside - if obj is equal to None
+=======
+
+    def delete(self, obj=None):
+        """ delete
+>>>>>>> ca86d162df3c9cd724608a7da04c8fb91261c9f8
         """
         if obj:
             key = "{}.{}".format(type(obj).__name__, obj.id)
